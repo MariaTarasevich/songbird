@@ -1,12 +1,13 @@
 import React from 'react';
 import './QuizModule.css';
-import {RightAnswer} from './rightAnswer/RIghtAnswer.jsx'
 import {Nav} from '../nav/Nav.jsx'
 import { birdsData } from '../../data/birdsData';
 import {Header} from '../header/Header'
 import { useState } from 'react';
 import {AudioBlock} from '../audioBlock/AudioBlock.jsx'
-
+import correctAnswerSound from '../../sounds/correctAnswerSound.mp3'
+import incorrectAnswerSound from '../../sounds/incorrectAnswerSound.mp3'
+import gameWon from '../../sounds/gameWon.mp3'
 
 export const QuizModule = () => {
     let [score, setScore] = useState(0)
@@ -14,10 +15,12 @@ export const QuizModule = () => {
     let [showScore, setShowScore] = useState(false)
     let [showDesc, setShowDesk] = useState(false)
     let [noansClass,  setNoAnsClass] = useState(false)
-    let [circleClass, setCircleClass] = useState(false)
     const [falseList, setFalseList] = useState(0);
     let [navIndex, setNavIndex] = useState(0)
     let [btnDisabledClass, setBtnDisabledClass] = useState(false)
+    const correctSound = new Audio(correctAnswerSound);
+    const incorrectSound = new Audio(incorrectAnswerSound);
+    const gameWonSound = new Audio(gameWon);
 
 
     const handleAnswerOptionClick = (isCorrect) => {
@@ -26,18 +29,24 @@ export const QuizModule = () => {
         if(isCorrect){
             setBtnDisabledClass(btnDisabledClass=true)
             setScore(score + 5 - falseList)
+            correctSoundPlay()
         } else{
                 setFalseList(falseList+1);
+                incorrectSoundPlay()
         }
         if(btn.hasAttribute('disabled') && isCorrect){
             btn.removeAttribute('disabled')
 
             changeClass()
-
         }
-console.log(circleClass)
     }
 
+    const correctSoundPlay = () => {
+        correctSound.play()
+    }
+    const incorrectSoundPlay = () => {
+        incorrectSound.play()
+    }
     const noAnswer = (isCorrect) => {
         if(isCorrect){
         setNoAnsClass(!noansClass)
@@ -52,11 +61,11 @@ console.log(circleClass)
         let btn = document.querySelector('button')
 
         setNavIndex(navIndex+1)
-        setCircleClass(circleClass(false))
         if (  nextQuestion < birdsData.length){
             setCurrentQuestion(nextQuestion)
         } else {
             setShowScore(true)
+            gameWonSound.play()
         }
         btn.toggleAttribute('disabled')
         setBtnDisabledClass(btnDisabledClass=false)
@@ -72,11 +81,6 @@ console.log(circleClass)
         document.location.reload()
     }
 
-    const circleChange = () => {
-
-        setCircleClass(!circleClass)
-    }
-
      return (<>
                  <Header score={score}/>
                  <Nav noansClass={noansClass} currentQuestion={currentQuestion} navIndex={navIndex}/>
@@ -87,7 +91,8 @@ console.log(circleClass)
                         <ul className='options__list'>
                             {
                                 birdsData[currentQuestion].answerOptions.map((item, index) => {
-                                    return  <li  key={index} id={item.id} className={circleClass ? `options__list-item` : 'options__list-item-active'}onClick={() => {handleAnswerOptionClick(item.isCorrect); noAnswer(item.isCorrect); circleChange()}}>{item.name}</li>
+
+                                    return  <li  key={index} id={item.id} className='options__list-item' onClick={() => {handleAnswerOptionClick(item.isCorrect); noAnswer(item.isCorrect); item.active = true}}><span className={item.active && !item.isCorrect  ? "options__circle-wrong" : "options__circle"} ></span>{item.name}</li>
                                     
                                 })
                             }

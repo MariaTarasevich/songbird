@@ -155,16 +155,6 @@
     padding: .85rem 1.25rem;
     cursor: pointer;
     border: 1px solid #555;
-    &::before {
-        content: "";
-        margin-right: 15px;
-        display: inline-block;
-        width: 10px;
-        height: 10px;
-        border-radius: 5px;
-        background-color: #444;
-      }
-
 }
 
 .options__list-item-active {
@@ -223,4 +213,24 @@ border: 1px solid #555;
     border-radius: 10px;
     background-color: #00bc8c;
     margin-top: 20px;
+}
+.options__circle {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 15px;
+    border-radius: 50%;
+    -webkit-transition: .1s;
+    transition: .1s;
+    background-color: #444;
+}
+.options__circle-wrong {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 15px;
+    border-radius: 50%;
+    -webkit-transition: .1s;
+    transition: .1s;
+    background-color: red;
 }
