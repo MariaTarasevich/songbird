@@ -21,6 +21,7 @@ export const QuizModule = () => {
     const correctSound = new Audio(correctAnswerSound);
     const incorrectSound = new Audio(incorrectAnswerSound);
     const gameWonSound = new Audio(gameWon);
+    
 
 
     const handleAnswerOptionClick = (isCorrect) => {
