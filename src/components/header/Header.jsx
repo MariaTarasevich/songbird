@@ -1,13 +1,14 @@
-import React from 'react';
-import './Header.css';
+import React from 'react'
 
-export const Header = ({score}) => {
-    return (
-        <div className="header">
-            <div className='header__logo'></div>
-            <h3 className='header__score-wrap'>
-                Score: <span className='header__score'>{score}</span>
-            </h3>
-        </div>
-    )
+import 'c:/app/birds/src/components/header/Header.css'
+
+export const Header = ({ score }) => {
+  return (
+    <div className="header">
+      <div className="header__logo"></div>
+      <h3 className="header__score-wrap">
+        Score: <span className="header__score">{score}</span>
+      </h3>
+    </div>
+  )
 }
