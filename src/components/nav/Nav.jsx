@@ -1,9 +1,9 @@
 
 import React from 'react'
 
-import { birdsData } from 'c:/app/birds/src/data/birdsData'
+import { birdsData } from '../../data/birdsData'
 
-import 'c:/app/birds/src/components/nav/Nav.css'
+import './Nav.css'
 
 export const Nav = ({ currentQuestion, navIndex }) => {
   return (

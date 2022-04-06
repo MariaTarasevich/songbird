@@ -1,6 +1,6 @@
 import React from 'react'
 
-import 'c:/app/birds/src/components/header/Header.css'
+import './Header.css'
 
 export const Header = ({ score }) => {
   return (

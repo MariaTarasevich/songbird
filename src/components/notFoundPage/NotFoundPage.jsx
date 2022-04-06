@@ -1,6 +1,6 @@
 import React from 'react'
 
-import 'c:/app/birds/src/components/notFoundPage/NotFoundPage.css'
+import './NotFoundPage.css'
 
 export const NotFoundPage = () => {
   return (

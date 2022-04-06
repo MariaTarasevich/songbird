@@ -14,7 +14,6 @@ body {
 .App {
   max-width: 1140px;
   width: 100%;
-  padding: 25px 25px;
 }
 
 #root {

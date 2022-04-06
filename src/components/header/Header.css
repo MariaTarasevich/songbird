@@ -8,18 +8,19 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-top: 2%;
 }
 
 .header__logo {
   background-image: url(../../../img/logo.png);
-  width: 200px;
-  height: 55px;
+  width: 20em;
+  height: 4em;
   background-size: contain;
   background-repeat: no-repeat;
 }
 
 .header__score {
   display: inline-block;
-  margin-left: 10px;
+  margin-left: 0.5rem;
 }
 /*# sourceMappingURL=Header.css.map */

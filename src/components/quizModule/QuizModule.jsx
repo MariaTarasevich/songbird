@@ -1,16 +1,15 @@
-import React from 'react'
-import { useState } from 'react'
+import { React, useState } from 'react'
 
 import { Nav } from '../nav/Nav.jsx'
 import { birdsData } from '../../data/birdsData'
 import { Header } from '../header/Header'
 import { AudioBlock } from '../audioBlock/AudioBlock.jsx'
 
-import correctAnswerSound from 'c:/app/birds/src/sounds/correctAnswerSound.mp3'
-import incorrectAnswerSound from 'C:/app/birds/src/sounds/incorrectAnswerSound.mp3'
+import correctAnswerSound from '../../sounds/correctAnswerSound.mp3'
+import incorrectAnswerSound from '../../sounds/incorrectAnswerSound.mp3'
 import gameWon from '../../sounds/gameWon.mp3'
 
-import 'c:/app/birds/src/components/quizModule/QuizModule.css'
+import './QuizModule.css'
 
 export const QuizModule = () => {
   const [score, setScore] = useState(0)
@@ -24,20 +23,22 @@ export const QuizModule = () => {
   const correctSound = new Audio(correctAnswerSound)
   const incorrectSound = new Audio(incorrectAnswerSound)
   const gameWonSound = new Audio(gameWon)
+  const maxScoreForLevel = 5
+  const disabledAttr = 'disabled'
 
   const handleAnswerOptionClick = (isCorrect) => {
     const btn = document.querySelector('button')
 
     if (isCorrect) {
       setBtnDisabledClass((btnDisabledClass = true))
-      setScore(score + 5 - falseList)
+      setScore(score + maxScoreForLevel - falseList)
       correctSoundPlay()
     } else {
       setFalseList(falseList + 1)
       incorrectSoundPlay()
     }
-    if (btn.hasAttribute('disabled') && isCorrect) {
-      btn.removeAttribute('disabled')
+    if (btn.hasAttribute(disabledAttr) && isCorrect) {
+      btn.removeAttribute(disabledAttr)
 
       changeClass()
     }
@@ -69,10 +70,10 @@ export const QuizModule = () => {
       setShowScore(true)
       gameWonSound.play()
     }
-    btn.toggleAttribute('disabled')
+    btn.toggleAttribute(disabledAttr)
     setBtnDisabledClass((btnDisabledClass = false))
     if (showScore) {
-      btn.removeAttribute('disabled')
+      btn.removeAttribute(disabledAttr)
     }
   }
   const changeClass = () => {
@@ -81,6 +82,11 @@ export const QuizModule = () => {
 
   const restart = () => {
     document.location.reload()
+  }
+
+  const handleItemClick = (isCorrect) => {
+    handleAnswerOptionClick(isCorrect)
+    noAnswer(isCorrect)
   }
 
   return (
@@ -103,8 +109,7 @@ export const QuizModule = () => {
                     id={item.id}
                     className="options__list-item"
                     onClick={() => {
-                      handleAnswerOptionClick(item.isCorrect)
-                      noAnswer(item.isCorrect)
+                      handleItemClick(item.isCorrect)
                       item.active = true
                     }}
                   >

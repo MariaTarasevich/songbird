@@ -10,9 +10,9 @@
 
 .audioBlock__pic {
     background-image: url(../../../img/unknown-bird.jpg);
-    width: 200px;
-    height: 155px;
-    border-radius: 10px;
+    width: 12.5em;
+    height: 9.5em;
+    border-radius: 10%;
 }
 
 .audioBlock__pic__rightAns-img {
@@ -23,8 +23,8 @@
 
 .audioBlock__info {
     width: 75%;
-    margin-left: 50px;
-    row-gap: 30px;
+    margin-left: 5%;
+    row-gap: 2em;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -33,5 +33,5 @@
 .audioBlock__name {
     font-size: 2rem;
     border-bottom: 1px solid #555;
-    padding-bottom: 10px;
+    padding-bottom: 3%;
 }

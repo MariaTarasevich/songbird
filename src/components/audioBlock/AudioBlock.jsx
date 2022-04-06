@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { birdsData } from 'c:/app/birds/src/data/birdsData'
+import { birdsData } from '../../data/birdsData'
 
 import './AudioBlock.css'
 
@@ -15,7 +15,7 @@ export const AudioBlock = ({ noansClass, currentQuestion }) => {
                 item.isCorrect ? '' : 'displayNone'
               }`}
             >
-              <div className="audioBlock__pic"></div>
+              <div className="audioBlock__pic"/>
               <div className="audioBlock__info">
                 <h3 className="audioBlock__name">******</h3>
                 <audio

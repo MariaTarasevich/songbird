@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin: 25px 0 25px 0;
+    margin: 3% 0 3% 0;
 }
 .nextButton {
     cursor: pointer;
@@ -12,7 +12,7 @@
     justify-content: space-between;
 }
 .rightAnswer__info {
-    padding: 20px;
+    padding: 5%;
     display: flex;
     flex-direction: column;
 
@@ -23,7 +23,7 @@
 }
 
 .rightAnswer__pic-img {
-    width: 200px;
+    width: 30%;
     border-radius: 10px;
     max-height: 240px;
 }
@@ -84,8 +84,8 @@
 }
 
 .rightAnswer__pic-img {
-    width: 200px;
-    border-radius: 10px;
+    width: 100%;
+    border-radius: 5%;
     max-height: 240px;
 }
 
@@ -98,7 +98,7 @@
 .rightAnswer__wrap-top {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 25px;
+    margin-bottom: 10%;
 }
 
 .rightAnswer__list {
@@ -118,7 +118,7 @@
 .rightAnswer__title {
     font-weight: 500;
     font-size: 30px;
-    padding-bottom: 8px;
+    padding-bottom: 3%;
 }
 .rightAnswer__audio {
     width: 100%;
@@ -126,12 +126,12 @@
 
 .rightAnswer__latin {
     display: inline-block;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-top: 3%;
+    padding-bottom: 3%;
     width: 100%;
     border-top:  1px solid #555;    
     border-bottom:  1px solid #555;
-    margin-bottom: 20px;
+    margin-bottom: 5%;
 }
 
 .options__wrap {
@@ -161,26 +161,16 @@
 padding: .85rem 1.25rem;
 cursor: pointer;
 border: 1px solid #555;
-&::before {
-    content: "";
-    margin-right: 15px;
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border-radius: 5px;
-    background-color: red;
-  }
-
 }
 .nextButton {
     width: 100%;
-    padding: 10px;
+    padding: 1%;
     background-color: #303030;
     border: 1px solid #444;
     color: #fff;
     font-size: 0.9375rem;
     border-radius: 0.25rem;
-    margin-top: 20px;
+    margin-top: 2%;
     cursor: pointer;
 }
 
@@ -208,17 +198,17 @@ border: 1px solid #555;
 }
 
 .quiz__final-score-btn {
-    padding: 20px;
+    padding: 2%;
     font-size: 22px;
-    border-radius: 10px;
+    border-radius: 1rem;
     background-color: #00bc8c;
     margin-top: 20px;
 }
 .options__circle {
     display: inline-block;
-    width: 10px;
-    height: 10px;
-    margin-right: 15px;
+    width: 0.7rem;
+    height: 0.7rem;
+    margin-right: 3%;
     border-radius: 50%;
     -webkit-transition: .1s;
     transition: .1s;
@@ -226,9 +216,9 @@ border: 1px solid #555;
 }
 .options__circle-wrong {
     display: inline-block;
-    width: 10px;
-    height: 10px;
-    margin-right: 15px;
+    width: 0.7rem;
+    height: 0.7rem;;
+    margin-right: 3%;
     border-radius: 50%;
     -webkit-transition: .1s;
     transition: .1s;
