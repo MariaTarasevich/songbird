@@ -16,7 +16,7 @@
   padding: 40px;
   border-radius: 10px;
   background-color: rgba(92, 92, 92, 0.507);
-  max-height: 40%;
+  max-height: 65%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -53,5 +53,11 @@
 
 .disabled-btn {
   background-color: #039671;
+}
+
+.input {
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 10%;
 }
 /*# sourceMappingURL=SignIn.css.map */
