@@ -1,4 +1,6 @@
 import React from 'react'
+import Lottie from 'lottie-react'
+import notFoundPic from './../../img/notFoudPic.json'
 
 import './NotFoundPage.css'
 
@@ -9,11 +11,7 @@ export const NotFoundPage = () => {
       <h3 className="not-found__subtitle">
         К сожалению, такой страницы не найдено
       </h3>
-      <img
-        className="not-found__img"
-        src="https://i.gifer.com/origin/3f/3fcf565ccc553afcfd89858c97304705.gif"
-        alt="how did you get here"
-      />
+      <Lottie animationData={notFoundPic} loop/>
     </div>
   )
 }

@@ -1,7 +1,8 @@
 import React from 'react'
 import { Formik } from 'formik'
-import '../signIn/SignIn.css'
 import * as yup from 'yup'
+
+import '../signIn/SignIn.css'
 
 export const SignUp = () => {
   const validationsSchema = yup.object().shape({
@@ -27,8 +28,15 @@ export const SignUp = () => {
           confirmEmail: ''
         }}
         validateOnBlur
-        onSubmit={(values) => { console.log(values) }}
         validationSchema={validationsSchema}
+        onSubmit={values => {
+          if (localStorage.getItem('user')) {
+            localStorage.clear()
+            localStorage.setItem('user', JSON.stringify(values))
+          } else {
+            localStorage.setItem('user', JSON.stringify(values))
+          }
+        }}
       >
         {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }) => (
           <div className={'from'}>

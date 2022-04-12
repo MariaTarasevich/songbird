@@ -12,7 +12,7 @@
 }
 
 .header__logo {
-  background-image: url(../../../img/logo.png);
+  background-image: url(../../img/logo.png);
   width: 20em;
   height: 4em;
   background-size: contain;

@@ -18,6 +18,9 @@ module.exports = {
     'react'
   ],
   rules: {
-    'react/prop-types': 'off'
+    'react/prop-types': 'off',
+    'jsx-quotes': 'off',
+    'quote-props': 'off',
+    'no-extra-semi': 'off'
   }
 }
