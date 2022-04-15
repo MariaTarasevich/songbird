@@ -1,0 +1,11 @@
+.profile__container {
+  height: 20vh;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.profile__item-data {
+  font-weight: bold;
+}
+/*# sourceMappingURL=Profile.css.map */

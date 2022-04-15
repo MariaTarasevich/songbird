@@ -1,4 +1,5 @@
-import { React, useState } from 'react'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { Nav } from '../nav/Nav.jsx'
 import { birdsData } from '../../data/birdsData'
@@ -12,34 +13,40 @@ import gameWon from '../../sounds/gameWon.mp3'
 import './QuizModule.css'
 
 export const QuizModule = () => {
-  const [score, setScore] = useState(0)
-  const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [showScore, setShowScore] = useState(false)
-  const [showDesc, setShowDesk] = useState(false)
-  const [noansClass, setNoAnsClass] = useState(false)
-  const [falseList, setFalseList] = useState(0)
-  const [navIndex, setNavIndex] = useState(0)
-  let [btnDisabledClass, setBtnDisabledClass] = useState(false)
   const correctSound = new Audio(correctAnswerSound)
   const incorrectSound = new Audio(incorrectAnswerSound)
   const gameWonSound = new Audio(gameWon)
-  const maxScoreForLevel = 5
   const disabledAttr = 'disabled'
+
+  const dispatch = useDispatch()
+  const scoreMy = useSelector(state => state.scoreMy)
+  const maxMark = useSelector(state => state.maxMark)
+  const falseCount = useSelector(state => state.falseCount)
+  const showScore = useSelector(state => state.showScore)
+  const currentQuestion = useSelector(state => state.currentQuestion)
+  const showDesc = useSelector(state => state.showDesc)
+  const noAnsClass = useSelector(state => state.noAnsClass)
+  const btnDisabledClass = useSelector(state => state.btnDisabledClass)
+  const navIndex = useSelector(state => state.navIndex)
+
+  console.log(maxMark, falseCount, scoreMy, showScore, showDesc, btnDisabledClass)
+
+  const changeScore = (isCorrect) => {
+    if (!isCorrect) dispatch({ type: 'FALSE_ANSWER' })
+    else { dispatch({ type: 'CORRECT_ANSWER' }) }
+  }
 
   const handleAnswerOptionClick = (isCorrect) => {
     const btn = document.querySelector('button')
 
     if (isCorrect) {
-      setBtnDisabledClass((btnDisabledClass = true))
-      setScore(score + maxScoreForLevel - falseList)
+      dispatch({ type: 'ENABLE_BUTTON' })
       correctSoundPlay()
     } else {
-      setFalseList(falseList + 1)
       incorrectSoundPlay()
     }
     if (btn.hasAttribute(disabledAttr) && isCorrect) {
       btn.removeAttribute(disabledAttr)
-
       changeClass()
     }
   }
@@ -52,32 +59,29 @@ export const QuizModule = () => {
   }
   const noAnswer = (isCorrect) => {
     if (isCorrect) {
-      setNoAnsClass(!noansClass)
+      dispatch({ type: 'CHANGE_ANSWER_CLASS' })
     }
   }
   const noAnswer2 = () => {
-    setNoAnsClass(!noansClass)
+    dispatch({ type: 'CHANGE_ANSWER_CLASS' })
   }
   const switchQuestion = () => {
-    setFalseList(0)
-    const nextQuestion = currentQuestion + 1
     const btn = document.querySelector('button')
-
-    setNavIndex(navIndex + 1)
-    if (nextQuestion < birdsData.length) {
-      setCurrentQuestion(nextQuestion)
+    dispatch({ type: 'INCREMENT_NAV_INDEX' })
+    if (currentQuestion + 1 < birdsData.length) {
+      dispatch({ type: 'CHANGE_CURRENT_QUESTION' })
     } else {
-      setShowScore(true)
+      dispatch({ type: 'SHOW_SCORE' })
       gameWonSound.play()
     }
     btn.toggleAttribute(disabledAttr)
-    setBtnDisabledClass((btnDisabledClass = false))
+    dispatch({ type: 'DISABLE_BUTTON' })
     if (showScore) {
       btn.removeAttribute(disabledAttr)
     }
   }
   const changeClass = () => {
-    setShowDesk(!showDesc)
+    dispatch({ type: 'SHOW_DESCRIPTION' })
   }
 
   const restart = () => {
@@ -91,13 +95,12 @@ export const QuizModule = () => {
 
   return (
     <>
-      <Header score={score} />
+      <Header scoreMy={scoreMy} />
       <Nav
-        noansClass={noansClass}
         currentQuestion={currentQuestion}
         navIndex={navIndex}
       />
-      <AudioBlock noansClass={noansClass} currentQuestion={currentQuestion} />
+      <AudioBlock noAnsClass={noAnsClass} currentQuestion={currentQuestion} />
       <div className={`quiz__wrap ${showScore ? 'displayNone' : ''}`}>
         <div className="quiz__options-answers-wrap">
           <div className="options__wrap">
@@ -111,6 +114,7 @@ export const QuizModule = () => {
                     onClick={() => {
                       handleItemClick(item.isCorrect)
                       item.active = true
+                      changeScore(item.isCorrect)
                     }}
                   >
                     <span
@@ -129,7 +133,7 @@ export const QuizModule = () => {
           <div className="rightAnswer__wrap">
             <div
               id="noAnswerBlock"
-              className={noansClass ? 'displayNone' : 'rightAnswer__noAnswer'}
+              className={noAnsClass ? 'displayNone' : 'rightAnswer__noAnswer'}
             >
               <p className="rightAnswer__noAnswer-p">
                 Послушайте плеер.
@@ -139,7 +143,7 @@ export const QuizModule = () => {
             </div>
             {birdsData[currentQuestion].answerOptions.map((item, index) => {
               return (
-                <div className={noansClass ? '' : 'displayNone'} key={index}>
+                <div className={noAnsClass ? '' : 'displayNone'} key={index}>
                   <div
                     className={
                       item.isCorrect ? 'rightAnswer__info' : 'displayNone'
@@ -206,7 +210,7 @@ export const QuizModule = () => {
           className="quiz__final-score-img"
         />
         <p className="quiz__final-score-paragraph">
-          Вы набрали {score} из 30 возможных баллов!
+          Вы набрали {scoreMy} из 30 возможных баллов!
         </p>
         <button className="quiz__final-score-btn" onClick={restart}>
           Попробовать снова

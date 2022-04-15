@@ -1,5 +1,5 @@
 import React from 'react'
-import { Formik } from 'formik'
+import { Formik, Field, Form, ErrorMessage } from 'formik'
 import * as yup from 'yup'
 
 import '../signIn/SignIn.css'
@@ -13,6 +13,11 @@ export const SignUp = () => {
     email: yup.string().email('Введите верный email').required('Обязательно'),
     confirmEmail: yup.string().email('Введите верный email').oneOf([yup.ref('email')], 'Email не совпадают').required('Обязательно')
   })
+
+  const resetForm = () => {
+    const signUpInput = document.querySelectorAll('.signUpInput')
+    signUpInput.forEach(function (item) { item.value = '' })
+  }
 
   return (
       <div className='sign-in__wrap'>
@@ -38,12 +43,26 @@ export const SignUp = () => {
           }
         }}
       >
+                    <Formik
+                initialValues={{
+                  acceptTerms: false
+                }}
+                validationSchema={yup.object().shape({
+                  acceptTerms: yup.bool().oneOf([true], 'Accept Terms & Conditions is required')
+                })}
+                onSubmit={fields => {
+                  alert('SUCCESS!! :-)\n\n' + JSON.stringify(fields, null, 4))
+                }}
+            >
         {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }) => (
+          <Form>
+            <div className="form-group form-check">
+            <div className="form-group">
           <div className={'from'}>
             <p>
               <label htmlFor={'name'}>Name</label><br />
               <input
-                className={'input'}
+                className={'input signUpInput'}
                 type={'text'}
                 name={'name'}
                 onChange={handleChange}
@@ -55,7 +74,7 @@ export const SignUp = () => {
             <p>
               <label htmlFor={'secondName'}>Surname</label><br />
               <input
-                className={'input'}
+                className={'input signUpInput'}
                 type={'text'}
                 name={'secondName'}
                 onChange={handleChange}
@@ -67,7 +86,7 @@ export const SignUp = () => {
             <p>
               <label htmlFor={'secondName'}>Password</label><br />
               <input
-                className={'input'}
+                className={'input signUpInput'}
                 type={'password'}
                 name={'password'}
                 onChange={handleChange}
@@ -80,7 +99,7 @@ export const SignUp = () => {
             <p>
               <label htmlFor={'confirmPassword'}>Confirm password</label><br />
               <input
-                className={'input'}
+                className={'input signUpInput'}
                 type={'password'}
                 name={'confirmPassword'}
                 onChange={handleChange}
@@ -93,7 +112,7 @@ export const SignUp = () => {
             <p>
               <label htmlFor={'email'}>Email</label><br />
               <input
-                className={'input'}
+                className={'input signUpInput'}
                 type={'email'}
                 name={'email'}
                 onChange={handleChange}
@@ -106,7 +125,7 @@ export const SignUp = () => {
             <p>
               <label htmlFor={'confirmEmail'}>Confirm email</label><br />
               <input
-                className={'input'}
+                className={'input signUpInput'}
                 type={'email'}
                 name={'confirmEmail'}
                 onChange={handleChange}
@@ -115,17 +134,28 @@ export const SignUp = () => {
               />
             </p>
             {touched.confirmEmail && errors.confirmEmail && <p className={'error'}>{errors.confirmEmail}</p>}
+            <div className="form-group form-check">
+                            <Field type="checkbox" name="acceptTerms" className={'form-check-input ' + (errors.acceptTerms && touched.acceptTerms ? ' is-invalid' : '')} />
+                            <label htmlFor="acceptTerms" className="form-check-label">Accept Terms & Conditions</label>
+                            <ErrorMessage name="acceptTerms" component="div" className="invalid-feedback" />
+                        </div>
 
             <button
               disabled={!isValid || !dirty}
-              className={`sign-in__btn ${
+              className={`sign-in__btn btn btn-primary mr-2 ${
                 dirty && isValid ? '' : 'disabled-btn'
               }`}
               onClick={handleSubmit}
               type={'submit'}
             >Sign Up</button>
+                                     <button type="reset" className="btn btn-secondary sign-in___reset-btn" onClick={() => resetForm()}>Reset</button>
+             </div>
           </div>
+          </div>
+                  </Form>
         )}
+
+        </Formik>
       </Formik>
     </div>
     </div>

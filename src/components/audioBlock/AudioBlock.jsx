@@ -4,14 +4,14 @@ import { birdsData } from '../../data/birdsData'
 
 import './AudioBlock.css'
 
-export const AudioBlock = ({ noansClass, currentQuestion }) => {
+export const AudioBlock = ({ noAnsClass, currentQuestion }) => {
   return (
     <div className="audioBlock__wrap">
       {birdsData[currentQuestion].answerOptions.map((item, index) => {
         return (
           <>
             <div
-              className={`audioBlock__wrap ${noansClass ? 'displayNone' : ''} ${
+              className={`audioBlock__wrap ${noAnsClass ? 'displayNone' : ''} ${
                 item.isCorrect ? '' : 'displayNone'
               }`}
             >
@@ -28,7 +28,7 @@ export const AudioBlock = ({ noansClass, currentQuestion }) => {
               </div>
             </div>
             <div
-              className={`audioBlock__wrap ${noansClass ? '' : 'displayNone'} ${
+              className={`audioBlock__wrap ${noAnsClass ? '' : 'displayNone'} ${
                 item.isCorrect ? '' : 'displayNone'
               }`}
             >

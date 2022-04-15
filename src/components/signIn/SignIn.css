@@ -1,4 +1,4 @@
-.sign-in__wrap {
+.sign-in__wrap, .profile__wrap {
   width: 100%;
   height: 100vh;
   display: -webkit-box;
@@ -12,9 +12,9 @@
           align-items: center;
 }
 
-.sign-in__container {
-  padding: 40px;
-  border-radius: 10px;
+.sign-in__container, .profile__container {
+  padding: 5%;
+  border-radius: 5%;
   background-color: rgba(92, 92, 92, 0.507);
   max-height: 65%;
   display: -webkit-box;
@@ -41,7 +41,7 @@
   margin-top: 35px;
 }
 
-.sign-in__btn {
+.sign-in__btn, .sign-in___reset-btn {
   padding: 10px 20px;
   border-radius: 10px;
   background-color: #00bc8c;
@@ -59,5 +59,13 @@
   width: 100%;
   display: inline-block;
   margin-bottom: 10%;
+}
+
+.form-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 /*# sourceMappingURL=SignIn.css.map */
