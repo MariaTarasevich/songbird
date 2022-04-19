@@ -17,7 +17,8 @@ const defaultState = {
   showDesc: false,
   noAnsClass: false,
   btnDisabledClass: false,
-  navIndex: 0
+  navIndex: 0,
+  handleProfile: false
 }
 
 const reducer = (state = defaultState, action) => {
@@ -40,6 +41,8 @@ const reducer = (state = defaultState, action) => {
       return { ...state, btnDisabledClass: false }
     case 'INCREMENT_NAV_INDEX':
       return { ...state, navIndex: state.navIndex + 1 }
+    case 'HANDLE_PROFILE':
+      return { ...state, handleProfile: true }
     default:
       return state
   }

@@ -1,10 +1,16 @@
 import React from 'react'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
+import { NavLink } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import * as yup from 'yup'
 
 import '../signIn/SignIn.css'
 
 export const SignUp = () => {
+  const dispatch = useDispatch()
+  const handleProfile = useSelector(state => state.handleProfile)
+  console.log(handleProfile)
+
   const validationsSchema = yup.object().shape({
     name: yup.string().typeError('Должно быть строкой').required('Обязательно'),
     secondName: yup.string().typeError('Должно быть строкой').required('Обязательно'),
@@ -21,8 +27,13 @@ export const SignUp = () => {
 
   return (
       <div className='sign-in__wrap'>
+        <div className='sign-in__wrap-content'>
+      <div className='sign-in__wrap-welcome'>
+        <h2 className='sign-in__title-welcome'>Welcome to the quiz!</h2>
+      </div>
     <div className="sign-in__container">
     <h1>Sign up to the quiz</h1>
+    <p className='sign-in__switch-page'>Already have a profile? <NavLink to='/signin' className='header__link'>Sign In</NavLink></p>
       <Formik
         initialValues={{
           name: '',
@@ -33,15 +44,7 @@ export const SignUp = () => {
           confirmEmail: ''
         }}
         validateOnBlur
-        validationSchema={validationsSchema}
-        onSubmit={values => {
-          if (localStorage.getItem('user')) {
-            localStorage.clear()
-            localStorage.setItem('user', JSON.stringify(values))
-          } else {
-            localStorage.setItem('user', JSON.stringify(values))
-          }
-        }}
+        validationSchema={validationsSchema }
       >
                     <Formik
                 initialValues={{
@@ -51,11 +54,19 @@ export const SignUp = () => {
                   acceptTerms: yup.bool().oneOf([true], 'Accept Terms & Conditions is required')
                 })}
                 onSubmit={fields => {
-                  alert('SUCCESS!! :-)\n\n' + JSON.stringify(fields, null, 4))
+                  dispatch({ type: 'HANDLE_PROFILE' })
+                  if (localStorage.getItem('user')) {
+                    localStorage.clear()
+                    localStorage.setItem('user', JSON.stringify(fields))
+                    localStorage.setItem('signedup', JSON.stringify(true))
+                  } else {
+                    localStorage.setItem('user', JSON.stringify(fields))
+                    localStorage.setItem('signedup', JSON.stringify(true))
+                  }
                 }}
             >
         {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }) => (
-          <Form>
+          <Form np>
             <div className="form-group form-check">
             <div className="form-group">
           <div className={'from'}>
@@ -148,7 +159,7 @@ export const SignUp = () => {
               onClick={handleSubmit}
               type={'submit'}
             >Sign Up</button>
-                                     <button type="reset" className="btn btn-secondary sign-in___reset-btn" onClick={() => resetForm()}>Reset</button>
+              <button type="reset" className="btn btn-secondary sign-in___reset-btn" onClick={() => resetForm()}>Reset</button>
              </div>
           </div>
           </div>
@@ -157,6 +168,7 @@ export const SignUp = () => {
 
         </Formik>
       </Formik>
+    </div>
     </div>
     </div>
   )

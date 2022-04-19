@@ -1,4 +1,6 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 
 import { Formik } from 'formik'
 
@@ -30,11 +32,22 @@ const submitForm = (values) => {
 }
 
 export const SignIn = () => {
+  const dispatch = useDispatch()
+  const handleProfile = useSelector(state => state.handleProfile)
+  console.log(handleProfile)
+
   return (
     <Formik
       initialValues={initialValues}
       validate={validate}
-      onSubmit={submitForm}
+      onSubmit={(fields) => {
+        submitForm(); dispatch({ type: 'HANDLE_PROFILE' }); if (localStorage.getItem('user')) {
+          localStorage.clear()
+          localStorage.setItem('user', JSON.stringify(fields))
+        } else {
+          localStorage.setItem('user', JSON.stringify(fields))
+        }
+      }}
     >
       {(formik) => {
         const {
@@ -48,9 +61,14 @@ export const SignIn = () => {
           dirty
         } = formik
         return (
-          <div className="sign-in__wrap">
+          <div className='sign-in__wrap'>
+          <div className='sign-in__wrap-content sign-in__all-content'>
+        <div className='sign-in__wrap-welcome'>
+          <h2 className='sign-in__title-welcome'>Welcome back to the quiz!</h2>
+        </div>
             <div className="sign-in__container">
               <h1>Sign in to the quiz</h1>
+              <p className='sign-in__switch-page'>Don`t have a profile yet? <NavLink to='/signup' className='header__link'>Sign Out</NavLink></p>
               <form onSubmit={handleSubmit}>
                 <div className="form-row">
                   <label htmlFor="email">Email</label>
@@ -99,6 +117,7 @@ export const SignIn = () => {
                 </button>
               </form>
             </div>
+          </div>
           </div>
         )
       }}

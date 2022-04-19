@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 import './Profile.css'
 
@@ -9,11 +10,20 @@ export const Profile = () => {
   return (
     <div className="profile__wrap">
       <div className='profile__container'>
-        <h1 className="profile__title">Credentials</h1>
-        <p className="profile__item">Name: <span className="profile__item-data">{userData.name}</span></p>
-        <p className="profile__item">Surname: <span className="profile__item-data">{userData.secondName}</span></p>
-        <p className="profile__item">Email: <span className="profile__item-data">{userData.email}</span></p>
-        <p className="profile__item">Score: <span className="profile__item-data">{score}</span></p>
+        <div className='profile__credentials'>
+          <h1 className="profile__title">Credentials</h1>
+          <div className='profile__circle'>{userData.name[0]}</div>
+          <div className='profile__names'>
+          <p className="profile__item">Name: <span className="profile__item-data">{userData.name}</span></p>
+          <p className="profile__item">Surname: <span className="profile__item-data">{userData.secondName}</span></p>
+          </div>
+        <div className='profile__additional-data'>
+          <p className="profile__item">Email: <span className="profile__item-data">{userData.email}</span></p>
+          <p className="profile__item">Score: <span className="profile__item-data">{score}</span></p>
+        </div>
+          <NavLink to='/signup' className='header__link'>Sign Out</NavLink>
+        </div>
+
       </div>
     </div>
   )
