@@ -150,7 +150,6 @@ export const SignUp = () => {
                             <label htmlFor="acceptTerms" className="form-check-label">Accept Terms & Conditions</label>
                             <ErrorMessage name="acceptTerms" component="div" className="invalid-feedback" />
                         </div>
-
             <button
               disabled={!isValid || !dirty}
               className={`sign-in__btn btn btn-primary mr-2 ${
@@ -158,7 +157,8 @@ export const SignUp = () => {
               }`}
               onClick={handleSubmit}
               type={'submit'}
-            >Sign Up</button>
+            > { dirty && isValid ? <NavLink className='sign-in__link' to='/'>Sign Up</NavLink> : 'Sign Up'}
+               </button>
               <button type="reset" className="btn btn-secondary sign-in___reset-btn" onClick={() => resetForm()}>Reset</button>
              </div>
           </div>

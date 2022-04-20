@@ -15,6 +15,18 @@
   font-size: 20px;
   display: inline-block;
   width: 20em;
+  height: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-left: 5%;
+}
+
+.profile__name, .profile__email {
+  border-bottom: 1px solid black;
 }
 
 .profile__circle {
@@ -29,7 +41,7 @@
           justify-content: center;
   width: 3em;
   height: 3em;
-  border: 3px solid #5D4BD8;
+  border: 3px solid #d84b4b;
   border-radius: 50%;
   background: #fdfdfdc0;
   font-size: 25px;
@@ -65,9 +77,22 @@
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding: 1em;
   height: 7em;
   width: 100%;
   background-color: rgba(92, 92, 92, 0.507);
+}
+
+.profile__btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 /*# sourceMappingURL=Profile.css.map */

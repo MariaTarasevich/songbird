@@ -112,8 +112,7 @@ export const SignIn = () => {
                     dirty && isValid ? '' : 'disabled-btn'
                   }`}
                   disabled={!(dirty && isValid)}
-                >
-                  Sign In
+                >{ dirty && isValid ? <NavLink className='sign-in__link' to='/'>Sign In</NavLink> : 'Sign Up'}
                 </button>
               </form>
             </div>

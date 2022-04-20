@@ -15,6 +15,14 @@
     font-size: 20px;
     display: inline-block;
     width: 20em;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    padding-left: 5%;
+}
+
+.profile__name, .profile__email {
+    border-bottom: 1px solid black;
 }
 
 .profile__circle {
@@ -23,7 +31,7 @@
     justify-content: center;
     width: 3em;
     height: 3em;
-    border: 3px solid #5D4BD8;
+    border: 3px solid #d84b4b;
     border-radius: 50%;
     background: #fdfdfdc0;
     font-size: 25px;
@@ -42,8 +50,15 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    align-items: center;
     padding: 1em;
     height: 7em;
     width: 100%;
     background-color: rgba(92, 92, 92, 0.507);
+}
+
+.profile__btns {
+    display: flex;
+    width: 100%;
+    justify-content: center;
 }
