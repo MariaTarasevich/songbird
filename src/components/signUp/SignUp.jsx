@@ -1,15 +1,19 @@
 import React from 'react'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import { NavLink } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify'
+
 import { useDispatch, useSelector } from 'react-redux'
 import * as yup from 'yup'
 
 import '../signIn/SignIn.css'
+import 'react-toastify/dist/ReactToastify.css'
 
 export const SignUp = () => {
   const dispatch = useDispatch()
   const handleProfile = useSelector(state => state.handleProfile)
-  console.log(handleProfile)
+  const redirectTrigger = useSelector(state => state.redirectTrigger)
+  console.log(handleProfile, redirectTrigger)
 
   const validationsSchema = yup.object().shape({
     name: yup.string().typeError('Должно быть строкой').required('Обязательно'),
@@ -19,6 +23,8 @@ export const SignUp = () => {
     email: yup.string().email('Введите верный email').required('Обязательно'),
     confirmEmail: yup.string().email('Введите верный email').oneOf([yup.ref('email')], 'Email не совпадают').required('Обязательно')
   })
+
+  const notification = () => toast('Success')
 
   const resetForm = () => {
     const signUpInput = document.querySelectorAll('.signUpInput')
@@ -44,7 +50,7 @@ export const SignUp = () => {
           confirmEmail: ''
         }}
         validateOnBlur
-        validationSchema={validationsSchema }
+        validationSchema={validationsSchema}
       >
                     <Formik
                 initialValues={{
@@ -65,11 +71,22 @@ export const SignUp = () => {
                   }
                 }}
             >
+
         {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }) => (
-          <Form np>
+          <Form >
             <div className="form-group form-check">
             <div className="form-group">
           <div className={'from'}>
+          <ToastContainer
+                position="top-center"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover />
             <p>
               <label htmlFor={'name'}>Name</label><br />
               <input
@@ -155,11 +172,11 @@ export const SignUp = () => {
               className={`sign-in__btn btn btn-primary mr-2 ${
                 dirty && isValid ? '' : 'disabled-btn'
               }`}
-              onClick={handleSubmit}
+              onClick={() => { handleSubmit(); notification(); setTimeout(() => dispatch({ type: 'HANDLE_REDIRECT' }), 2000) }}
               type={'submit'}
-            > { dirty && isValid ? <NavLink className='sign-in__link' to='/'>Sign Up</NavLink> : 'Sign Up'}
-               </button>
+            >Sign Up</button>
               <button type="reset" className="btn btn-secondary sign-in___reset-btn" onClick={() => resetForm()}>Reset</button>
+              {redirectTrigger ? <button type="button " onClick={setTimeout(() => dispatch({ type: 'HANDLE_REDIRECT_FALSE' }), 2000) } className="btn btn-secondary sign-in___reset-btn" ><NavLink className='sign-in__link' to='/'>Enter quiz</NavLink></button> : null}
              </div>
           </div>
           </div>

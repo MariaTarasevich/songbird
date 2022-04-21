@@ -18,7 +18,8 @@ const defaultState = {
   noAnsClass: false,
   btnDisabledClass: false,
   navIndex: 0,
-  handleProfile: false
+  handleProfile: false,
+  redirectTrigger: false
 }
 
 const reducer = (state = defaultState, action) => {
@@ -43,6 +44,10 @@ const reducer = (state = defaultState, action) => {
       return { ...state, navIndex: state.navIndex + 1 }
     case 'HANDLE_PROFILE':
       return { ...state, handleProfile: true }
+    case 'HANDLE_REDIRECT':
+      return { ...state, redirectTrigger: true }
+    case 'HANDLE_REDIRECT_FALSE':
+      return { ...state, redirectTrigger: false }
     default:
       return state
   }

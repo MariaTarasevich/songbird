@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify'
 
 import { Formik } from 'formik'
 
@@ -34,7 +35,10 @@ const submitForm = (values) => {
 export const SignIn = () => {
   const dispatch = useDispatch()
   const handleProfile = useSelector(state => state.handleProfile)
+  const redirectTrigger = useSelector(state => state.redirectTrigger)
   console.log(handleProfile)
+
+  const notification = () => toast('Success')
 
   return (
     <Formik
@@ -62,6 +66,16 @@ export const SignIn = () => {
         } = formik
         return (
           <div className='sign-in__wrap'>
+              <ToastContainer
+                position="top-center"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover />
           <div className='sign-in__wrap-content sign-in__all-content'>
         <div className='sign-in__wrap-welcome'>
           <h2 className='sign-in__title-welcome'>Welcome back to the quiz!</h2>
@@ -107,13 +121,14 @@ export const SignIn = () => {
                 </div>
 
                 <button
-                  type="submit"
+                  type="submit" onClick={ () => { notification(); setTimeout(() => dispatch({ type: 'HANDLE_REDIRECT' }), 2000) } }
                   className={`sign-in__btn ${
                     dirty && isValid ? '' : 'disabled-btn'
                   }`}
                   disabled={!(dirty && isValid)}
-                >{ dirty && isValid ? <NavLink className='sign-in__link' to='/'>Sign In</NavLink> : 'Sign Up'}
+                >Sign In
                 </button>
+              {redirectTrigger ? <button type="button" onClick={() => dispatch({ type: 'HANDLE_REDIRECT_FALSE' }) } className="btn btn-secondary sign-in___reset-btn" ><NavLink className='sign-in__link' to='/'>Enter quiz</NavLink></button> : null}
               </form>
             </div>
           </div>
