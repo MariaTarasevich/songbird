@@ -19,7 +19,8 @@ const defaultState = {
   btnDisabledClass: false,
   navIndex: 0,
   handleProfile: false,
-  redirectTrigger: false
+  redirectTrigger: false,
+  handleEditMode: false
 }
 
 const reducer = (state = defaultState, action) => {
@@ -48,6 +49,10 @@ const reducer = (state = defaultState, action) => {
       return { ...state, redirectTrigger: true }
     case 'HANDLE_REDIRECT_FALSE':
       return { ...state, redirectTrigger: false }
+    case 'HANDLE_EDIT_MODE_TRUE':
+      return { ...state, handleEditMode: true }
+    case 'HANDLE_EDIT_MODE_FALSE':
+      return { ...state, handleEditMode: false }
     default:
       return state
   }
