@@ -12,13 +12,16 @@
           align-items: center;
 }
 
+.sign-in__wrap {
+  height: 50em;
+}
+
 .sign-in__wrap-content {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: 70vh;
+  height: 70%;
   background: linear-gradient(135deg, #ffebcc, #ff9e00);
-  border-radius: 5%;
 }
 
 .sign-in__wrap-welcome {
@@ -50,7 +53,6 @@
 }
 
 .sign-in__container, .profile__container {
-  border-radius: 38px;
   background-color: rgba(92, 92, 92, 0.507);
   height: 100%;
   width: 55%;
@@ -90,8 +92,7 @@
   background-color: #00bc8c;
   color: white;
   font-weight: bold;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 5%;
   cursor: pointer;
 }
 
@@ -151,5 +152,80 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+  .sign-in__title-welcome {
+    font-size: 52px;
+  }
+}
+
+@media (max-width: 425px) {
+  .sign-in__wrap-content {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .sign-in__wrap-welcome, .sign-in__container {
+    width: 100%;
+  }
+  .sign-in__container {
+    padding-bottom: 3%;
+  }
+}
+
+@media (max-width: 320px) {
+  .sign-in__title-welcome {
+    font-size: 42px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .sign-in__wrap-content {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  .sign-in__wrap-welcome {
+    width: 100%;
+  }
+  .sign-in__title-welcome {
+    font-size: 57px;
+  }
+  .sign-in__all-content {
+    height: 60%;
+    padding-bottom: 5%;
+  }
+  .sign-in__switch-page {
+    margin-top: 5%;
+  }
+  .sign-in__container {
+    padding: 3%;
+  }
+}
+
+@media (max-width: 425px) {
+  .sign-in__all-content {
+    height: 70%;
+  }
+}
+
+@media (max-width: 425px) {
+  .sign-in__title-welcome {
+    font-size: 37px;
+  }
+  .sign-in__all-content {
+    height: 58%;
+  }
+  .sign-in__title {
+    font-size: 24px;
+  }
 }
 /*# sourceMappingURL=SignIn.css.map */

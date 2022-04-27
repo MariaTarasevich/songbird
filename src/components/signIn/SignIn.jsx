@@ -81,7 +81,7 @@ export const SignIn = () => {
           <h2 className='sign-in__title-welcome'>Welcome back to the quiz!</h2>
         </div>
             <div className="sign-in__container">
-              <h1>Sign in to the quiz</h1>
+              <h1 className='sign-in__title'>Sign in to the quiz</h1>
               <p className='sign-in__switch-page'>Don`t have a profile yet? <NavLink to='/signup' className='header__link'>Sign Up</NavLink></p>
               <form onSubmit={handleSubmit}>
                 <div className="form-row">
