@@ -167,16 +167,18 @@ export const SignUp = () => {
                             <label htmlFor="acceptTerms" className="form-check-label">Accept Terms & Conditions</label>
                             <ErrorMessage name="acceptTerms" component="div" className="invalid-feedback" />
                         </div>
+            <div className='signup__btns-wrap'>
             <button
               disabled={!isValid || !dirty}
               className={`sign-in__btn btn btn-primary mr-2 ${
                 dirty && isValid ? '' : 'disabled-btn'
               }`}
-              onClick={() => { handleSubmit(); notification(); setTimeout(() => dispatch({ type: 'HANDLE_REDIRECT' }), 2000) }}
+              onClick={() => { handleSubmit(); notification(); setTimeout(() => { dispatch({ type: 'HANDLE_REDIRECT' }) }, 2000) }}
               type={'submit'}
             >Sign Up</button>
               <button type="reset" className="btn btn-secondary sign-in___reset-btn" onClick={() => resetForm()}>Reset</button>
-              {redirectTrigger ? <button type="button " onClick={setTimeout(() => dispatch({ type: 'HANDLE_REDIRECT_FALSE' }), 2000) } className="btn btn-secondary sign-in___reset-btn" ><NavLink className='sign-in__link' to='/'>Enter quiz</NavLink></button> : null}
+              {redirectTrigger ? <button type="button " onClick={ setTimeout(() => { dispatch({ type: 'HANDLE_REDIRECT' }) }, 2000) } className="btn btn-secondary sign-in___reset-btn" ><NavLink className='sign-in__link' to='/'>Enter quiz</NavLink></button> : null}
+              </div>
              </div>
           </div>
           </div>

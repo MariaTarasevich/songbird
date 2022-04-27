@@ -82,7 +82,7 @@ export const SignIn = () => {
         </div>
             <div className="sign-in__container">
               <h1>Sign in to the quiz</h1>
-              <p className='sign-in__switch-page'>Don`t have a profile yet? <NavLink to='/signup' className='header__link'>Sign Out</NavLink></p>
+              <p className='sign-in__switch-page'>Don`t have a profile yet? <NavLink to='/signup' className='header__link'>Sign Up</NavLink></p>
               <form onSubmit={handleSubmit}>
                 <div className="form-row">
                   <label htmlFor="email">Email</label>

@@ -224,3 +224,165 @@ border: 1px solid #555;
     transition: .1s;
     background-color: red;
 }
+
+@media (max-width: 1024px) {
+    .App {
+        max-width: 900px !important;
+    }
+
+    .header__credentials-wrap {
+        width: 30%;
+    }
+
+    .quiz__final-score {
+        padding-bottom: 3%;
+    }
+}
+
+@media (max-width: 768px)  {
+    .App {
+        max-width: 700px !important;
+    }
+
+    .header__credentials-wrap {
+        width: 40%;
+    }
+
+    .nav__list {
+        align-items: center;
+    }
+
+    .nav__item-link {
+        height: 100%;
+        font-size: 12px;
+    }
+
+    .header__link {
+        padding: 0.3em;
+        font-size: 16px;
+    }
+
+    .header__logo {
+        width: 11em;
+        background-position: center;
+    }
+}
+
+@media (max-width: 425px)  {
+    .App {
+        max-width: 400px !important;
+    }
+
+    .header__credentials-wrap {
+        width: 50%;
+        & a, & h3 {
+            font-size: 14px;
+        } 
+    }
+
+    .nav__item {
+        width: 88%;
+    }
+
+    .nav__list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    
+    .audioBlock__wrap {
+        width: 100%;
+        
+    }
+
+    .nav__item-link {
+        width: 100%;
+    }
+
+    .header__link {
+        padding: 0.2em;
+        font-size: 16px;
+    }
+
+    .header__logo {
+        width: 9em;
+    }
+
+    .audioBlock__wrap {
+        flex-direction: column;
+        padding: 5% 0 5% 0;
+    }
+
+    .audioBlock__pic {
+        margin-bottom: 2%;
+    }
+
+    .rightAnswer__wrap-top  {
+        flex-direction: column;
+    }
+
+    .rightAnswer__list {
+        width: 100%;
+    }
+
+    .nextButton {
+        padding: 2%;
+    }
+
+    .quiz__final-score-img {
+        max-width: 60%;
+    }
+
+    .quiz__final-score-title, .quiz__final-score-paragraph {
+        text-align: center;
+    }
+}
+
+@media (max-width: 375px) {
+    .App {
+        max-width: 340px !important;
+    }
+
+    .header {
+        flex-direction: column;
+    }
+
+    .header__credentials-wrap    {
+        width: 80%;
+    }
+
+    .audioBlock__info {
+        width: 95%;
+        margin-left: 0 ;
+    }
+
+    .quiz__options-answers-wrap {
+        flex-direction: column;
+    }
+
+    .options__wrap, .rightAnswer__wrap, .rightAnswer__noAnswer {
+        width: 100%;
+    }
+
+    .options__wrap {
+        margin-bottom: 3%;
+    }
+
+    .nav__item-link {
+        width: 97%;
+    }
+
+    .rightAnswer__noAnswer {
+        padding: 1%;
+    }
+}
+
+@media (max-width: 320px) {
+    .App {
+        max-width: 300px !important;
+    }
+
+    .nav__item-link {
+        width: 95%;
+      }
+}

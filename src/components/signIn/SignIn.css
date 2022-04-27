@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
 .sign-in__wrap, .profile__wrap {
   width: 100%;
-  height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -20,20 +19,6 @@
   height: 70vh;
   background: linear-gradient(135deg, #ffebcc, #ff9e00);
   border-radius: 5%;
-}
-
-.profile__wrap {
-  width: 100%;
-  height: 100vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 
 .sign-in__wrap-welcome {
@@ -140,7 +125,6 @@
 .input {
   width: 100%;
   display: inline-block;
-  margin-bottom: 10%;
 }
 
 .form-group {
@@ -157,5 +141,15 @@
   display: inline-block;
   width: 100%;
   height: 100%;
+}
+
+.signup__btns-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 /*# sourceMappingURL=SignIn.css.map */
