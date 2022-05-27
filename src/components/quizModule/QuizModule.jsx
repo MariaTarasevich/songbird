@@ -1,18 +1,20 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { Nav } from '../nav/Nav.jsx'
 import { birdsData } from '../../data/birdsData'
 import { Header } from '../header/Header'
 import { AudioBlock } from '../audioBlock/AudioBlock.jsx'
+import scoreCount from '../../store/score.js'
 
 import correctAnswerSound from '../../sounds/correctAnswerSound.mp3'
 import incorrectAnswerSound from '../../sounds/incorrectAnswerSound.mp3'
 import gameWon from '../../sounds/gameWon.mp3'
 
 import './QuizModule.css'
+import { observer } from 'mobx-react-lite'
 
-export const QuizModule = () => {
+export const QuizModule = observer(() => {
   const correctSound = new Audio(correctAnswerSound)
   const incorrectSound = new Audio(incorrectAnswerSound)
   const gameWonSound = new Audio(gameWon)
@@ -29,7 +31,7 @@ export const QuizModule = () => {
   const btnDisabledClass = useSelector(state => state.btnDisabledClass)
   const navIndex = useSelector(state => state.navIndex)
 
-  console.log(maxMark, falseCount, scoreMy, showScore, showDesc, btnDisabledClass)
+  const refAudio = useRef()
 
   const changeScore = (isCorrect) => {
     if (!isCorrect) dispatch({ type: 'FALSE_ANSWER' })
@@ -93,14 +95,25 @@ export const QuizModule = () => {
     noAnswer(isCorrect)
   }
 
+  const stopAudio = () => {
+    refAudio.current.pause()
+  }
+
+  // const checkItem = (isCorrect) => {
+  //   if (!isCorrect && scoreCount.score > 0) { scoreCount.decrement() } else if (isCorrect) { scoreCount.increment() }
+  // }
+
   return (
     <>
-      <Header scoreMy={scoreMy} />
+      <Header scoreMy={
+        scoreMy
+        //scoreCount.getScore()
+      } />
       <Nav
         currentQuestion={currentQuestion}
         navIndex={navIndex}
       />
-      <AudioBlock noAnsClass={noAnsClass} currentQuestion={currentQuestion} />
+      <AudioBlock noAnsClass={noAnsClass} currentQuestion={currentQuestion} ref={refAudio} />
       <div className={`quiz__wrap ${showScore ? 'displayNone' : ''}`}>
         <div className="quiz__options-answers-wrap">
           <div className="options__wrap">
@@ -114,6 +127,7 @@ export const QuizModule = () => {
                     onClick={() => {
                       handleItemClick(item.isCorrect)
                       item.active = true
+                      //checkItem(item.isCorrect)
                       changeScore(item.isCorrect)
                     }}
                   >
@@ -168,7 +182,7 @@ export const QuizModule = () => {
                           </span>
                         </li>
                         <li className="rightAnswer__item">
-                          <audio
+                          <audio ref={refAudio}
                             controls="controls"
                             className="rightAnswer__audio"
                             src={item.isCorrect ? item.audio : ''}
@@ -196,6 +210,7 @@ export const QuizModule = () => {
           onClick={() => {
             switchQuestion()
             noAnswer2()
+            stopAudio()
           }}
         >
           Next level
@@ -210,7 +225,10 @@ export const QuizModule = () => {
           className="quiz__final-score-img"
         />
         <p className="quiz__final-score-paragraph">
-          Вы набрали {scoreMy} из 30 возможных баллов!
+          Вы набрали {
+            scoreMy
+            //scoreCount.getScore()
+          } из 30 возможных баллов!
         </p>
         <button className="quiz__final-score-btn" onClick={restart}>
           Попробовать снова
@@ -218,4 +236,4 @@ export const QuizModule = () => {
       </div>
     </>
   )
-}
+})

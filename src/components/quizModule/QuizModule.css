@@ -119,6 +119,7 @@
   width: 100%;
   border-radius: 5%;
   max-height: 240px;
+  max-width: 250px;
 }
 
 .rightAnswer__wrap {

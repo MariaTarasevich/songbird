@@ -89,6 +89,7 @@
 .sign-in__btn, .sign-in___reset-btn {
   padding: 10px 20px;
   border-radius: 10px;
+  border: 0px;
   background-color: #00bc8c;
   color: white;
   font-weight: bold;

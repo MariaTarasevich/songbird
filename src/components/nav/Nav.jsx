@@ -14,9 +14,8 @@ export const Nav = ({ currentQuestion, navIndex }) => {
             <li className={`nav__item  ${item.isCorrect ? '' : 'displayNone'}`}>
               <a
                 href="#"
-                className={`nav__item-link ${
-                  navIndex === 0 ? 'nav__active' : ''
-                }`}
+                className={`nav__item-link ${navIndex === 0 ? 'nav__active' : ''
+                  }`}
               >
                 Разминка
               </a>
@@ -24,9 +23,8 @@ export const Nav = ({ currentQuestion, navIndex }) => {
             <li className={`nav__item ${item.isCorrect ? '' : 'displayNone'}`}>
               <a
                 href="#"
-                className={`nav__item-link ${
-                  navIndex === 1 ? 'nav__active' : ''
-                }`}
+                className={`nav__item-link ${navIndex === 1 ? 'nav__active' : ''
+                  }`}
               >
                 Воробьиные
               </a>
@@ -34,9 +32,8 @@ export const Nav = ({ currentQuestion, navIndex }) => {
             <li className={`nav__item  ${item.isCorrect ? '' : 'displayNone'}`}>
               <a
                 href="#"
-                className={`nav__item-link ${
-                  navIndex === 2 ? 'nav__active' : ''
-                }`}
+                className={`nav__item-link ${navIndex === 2 ? 'nav__active' : ''
+                  }`}
               >
                 Лесные птицы
               </a>
@@ -44,9 +41,8 @@ export const Nav = ({ currentQuestion, navIndex }) => {
             <li className={`nav__item ${item.isCorrect ? '' : 'displayNone'}`}>
               <a
                 href="#"
-                className={`nav__item-link ${
-                  navIndex === 3 ? 'nav__active' : ''
-                }`}
+                className={`nav__item-link ${navIndex === 3 ? 'nav__active' : ''
+                  }`}
               >
                 Певчие птицы
               </a>
@@ -54,9 +50,8 @@ export const Nav = ({ currentQuestion, navIndex }) => {
             <li className={`nav__item  ${item.isCorrect ? '' : 'displayNone'}`}>
               <a
                 href="#"
-                className={`nav__item-link ${
-                  navIndex === 4 ? 'nav__active' : ''
-                }`}
+                className={`nav__item-link ${navIndex === 4 ? 'nav__active' : ''
+                  }`}
               >
                 Хищные птицы
               </a>
@@ -64,9 +59,8 @@ export const Nav = ({ currentQuestion, navIndex }) => {
             <li className={`nav__item  ${item.isCorrect ? '' : 'displayNone'}`}>
               <a
                 href="#"
-                className={`nav__item-link ${
-                  navIndex === 5 ? 'nav__active' : ''
-                }`}
+                className={`nav__item-link ${navIndex === 5 ? 'nav__active' : ''
+                  }`}
               >
                 Морские птицы
               </a>

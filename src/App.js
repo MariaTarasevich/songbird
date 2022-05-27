@@ -5,9 +5,9 @@ import { SignIn } from './components/signIn/SignIn'
 import { SignUp } from './components/signUp/SignUp'
 import { QuizModule } from './components/quizModule/QuizModule.jsx'
 import { NotFoundPage } from './components/notFoundPage/NotFoundPage.jsx'
+import { Profile } from './components/profile/Profile'
 
 import './App.css'
-import { Profile } from './components/profile/Profile'
 
 function App () {
   return (

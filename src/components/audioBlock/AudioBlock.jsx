@@ -4,21 +4,21 @@ import { birdsData } from '../../data/birdsData'
 
 import './AudioBlock.css'
 
-export const AudioBlock = ({ noAnsClass, currentQuestion }) => {
+export const AudioBlock = ({ noAnsClass, currentQuestion, refAudio }) => {
   return (
     <div className="audioBlock__wrap">
       {birdsData[currentQuestion].answerOptions.map((item, index) => {
         return (
           <>
             <div
-              className={`audioBlock__wrap ${noAnsClass ? 'displayNone' : ''} ${
-                item.isCorrect ? '' : 'displayNone'
-              }`}
+              className={`audioBlock__wrap ${noAnsClass ? 'displayNone' : ''} ${item.isCorrect ? '' : 'displayNone'
+                }`}
             >
-              <div className="audioBlock__pic"/>
+              <div className="audioBlock__pic" />
               <div className="audioBlock__info">
                 <h3 className="audioBlock__name">******</h3>
                 <audio
+                  refAudio={refAudio}
                   controls="controls"
                   className="audioBlock__audio"
                   src={item.isCorrect ? item.audio : ''}
@@ -28,9 +28,8 @@ export const AudioBlock = ({ noAnsClass, currentQuestion }) => {
               </div>
             </div>
             <div
-              className={`audioBlock__wrap ${noAnsClass ? '' : 'displayNone'} ${
-                item.isCorrect ? '' : 'displayNone'
-              }`}
+              className={`audioBlock__wrap ${noAnsClass ? '' : 'displayNone'} ${item.isCorrect ? '' : 'displayNone'
+                }`}
             >
               <div className="audioBlock__pic__rightAns">
                 <img
