@@ -8,13 +8,11 @@ class Score {
 
     increment () {
       this.score = this.score + 5
-      console.log(this.score)
       return this.score
     }
 
     decrement () {
       this.score = this.score - 1
-      console.log(this.score)
       return this.score
     }
 
